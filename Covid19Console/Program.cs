@@ -30,7 +30,8 @@ namespace Covid19Console
             {
                 var line = data_reader.ReadLine();
                 if (string.IsNullOrWhiteSpace(line)) continue;
-                yield return line;
+
+                yield return line.Replace("Korea,", "Korea -");
             }
         }
 
@@ -41,7 +42,24 @@ namespace Covid19Console
             .Select(s => DateTime.Parse(s, CultureInfo.InvariantCulture))
             .ToArray();
 
+        private static IEnumerable<(string Country, string Province, int[] Count)> GetData()
+        {
+            var lines = GetDataLines()
+                .Skip(1)
+                .Select(line => line.Split(','));
 
+            foreach(var row in lines)
+            {
+                var province = row[0].Trim();
+                var country_name = row[1].Trim(' ','"');
+                var count = row.Skip(4)
+                    .Select(int.Parse)
+                    .ToArray();
+
+                yield return (country_name, province, count);
+            }
+
+        }
 
 
 
@@ -54,9 +72,14 @@ namespace Covid19Console
             //foreach(var data_line in GetDataLines())
             //{
             //    Console.WriteLine(data_line);
-            //}
-            var dates = GetDates();
-            Console.WriteLine(string.Join("\r\n", dates));
+            ////}
+            //var dates = GetDates();
+            //Console.WriteLine(string.Join("\r\n", dates));
+
+            var russia = GetData().First(v => v.Country.Equals("Russia", StringComparison.OrdinalIgnoreCase));
+
+            Console.WriteLine(string.Join("\r\n", GetDates().Zip(russia.Count, (date, count) => $"{date:dd:mm} - {count}")));
+
 
             Console.ReadLine();
            
