@@ -9,6 +9,12 @@
         
         xmlns:vm ="clr-namespace:Covid19.ViewModels"
         Title="{Binding Title}" Height="573.913" Width="930.435">
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="Q" Command="{Binding CloseApplicationCommand}"></KeyBinding>
+    </Window.InputBindings>
+    <Window.Resources>
+        <cmd:CloseApplicationCommand x:Key="CloseApplication"/>
+    </Window.Resources>
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -16,11 +22,12 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
                 <!--<MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"></MenuItem>-->
-                <MenuItem Header="Выход">
+                <!--<MenuItem Header="Выход">
                     <MenuItem.Command>
                         <cmd:CloseApplicationCommand/>
                     </MenuItem.Command>
-                </MenuItem>
+                </MenuItem>-->
+                <MenuItem Header="Выход" Command="{StaticResource CloseApplication}"></MenuItem>
             </MenuItem>
             <Separator Width="3" Background="Gray"/>
             <MenuItem Header="Помощь">
@@ -48,7 +55,11 @@
                     <Rectangle Grid.Row="0" Grid.Column="0"
                      Fill="Blue" Stroke="Red" StrokeThickness="3" 
                      RadiusX="5" RadiusY="7"/>
-                    <Ellipse Name="MyEllipse" Grid.Column="1" Grid.Row="1" Fill="Blue" Stroke="Red" StrokeThickness="3" Margin="10,0,-10,0"/>
+                    <Ellipse Name="MyEllipse" Grid.Column="1" Grid.Row="1" Fill="Blue" Stroke="Red" StrokeThickness="3" Margin="10,0,-10,0">
+                        <Ellipse.InputBindings>
+                            <MouseBinding Command="{Binding CloseApplicationCommand}" MouseAction="LeftDoubleClick"></MouseBinding>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
                     <GridSplitter Grid.Column="0" Grid.RowSpan="2"
                               HorizontalAlignment="Right"
                               Width="4"/>
