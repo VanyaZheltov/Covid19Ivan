@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cmd="clr-namespace:Covid19.Infrastructure.Commands"
         xmlns:local="clr-namespace:Covid19.Views.Windows"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
         
         xmlns:vm ="clr-namespace:Covid19.ViewModels"
@@ -42,7 +43,13 @@
             <ProgressBar Width="120" Height="14" Value="30"/>
         </StatusBar>
         <TabControl>
-            <TabItem Header="Вкладка 1">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Height="13" Margin="0,0,3,0" Icon="Regular_File" Foreground="Blue"/>
+                        <TextBlock Text="Вкладка 1"/>
+                    </StackPanel>
+                </TabItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="63*"/>
