@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1209
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Covid19", "Covid19\Covid19.csproj", "{D6289937-E31F-4DEF-A956-3FBC0DB53614}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLibFramesork", "TestLibFramesork\TestLibFramesork.csproj", "{99416B92-E235-4FCC-A9AA-86A4C7A28AAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D6289937-E31F-4DEF-A956-3FBC0DB53614}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6289937-E31F-4DEF-A956-3FBC0DB53614}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6289937-E31F-4DEF-A956-3FBC0DB53614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99416B92-E235-4FCC-A9AA-86A4C7A28AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99416B92-E235-4FCC-A9AA-86A4C7A28AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99416B92-E235-4FCC-A9AA-86A4C7A28AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99416B92-E235-4FCC-A9AA-86A4C7A28AAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

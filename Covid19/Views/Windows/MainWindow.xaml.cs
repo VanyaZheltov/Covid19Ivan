@@ -10,10 +10,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Covid19
+namespace Covid19.Views.Windows
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
