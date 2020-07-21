@@ -14,7 +14,7 @@ namespace Covid19.Infrastructure.Commands
         private readonly Func<object, bool> _CanExecute;
 
         public LambdaCommand(Action<object> Execute, Func<object,bool> CanExecute = null)
-        {
+        { 
             _Execute = Execute ?? throw new ArgumentNullException(nameof(Execute));
             _CanExecute = CanExecute;
         }
