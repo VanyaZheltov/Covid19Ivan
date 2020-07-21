@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cmd="clr-namespace:Covid19.Infrastructure.Commands"
         xmlns:local="clr-namespace:Covid19.Views.Windows"
+        xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
         
@@ -42,7 +43,7 @@
             <StatusBarItem/>
             <ProgressBar Width="120" Height="14" Value="30"/>
         </StatusBar>
-        <TabControl>
+        <TabControl SelectedIndex="{Binding}">
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -74,7 +75,18 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Вкладка 2"></TabItem>
+            <TabItem Header="График">
+                <oxy:Plot>
+                    <oxy:Plot.Axes>
+                        <oxy:LinearAxis Position="Left"></oxy:LinearAxis>
+                        <oxy:LinearAxis Position="Bottom"></oxy:LinearAxis>
+                    </oxy:Plot.Axes>
+                    <oxy:LineSeries Color="Blue"
+                                    ItemsSource="{Binding TestDataPoint}"
+                                    DataFieldX="XValue"
+                                    DataFieldY="YValue"/>
+                </oxy:Plot>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
