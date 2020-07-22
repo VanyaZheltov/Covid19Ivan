@@ -13,6 +13,15 @@ namespace Covid19.ViewModels
 {
     class MainWindowViewModel : ViewModel
     {
+        #region PageIndex : int - номер вкладки
+/// <summary>
+/// Номер вкладки
+/// </summary>
+        private int _SelectedPageIndex;
+
+        public int SelectedPageIndex { get => _SelectedPageIndex; set => Set(ref _SelectedPageIndex, value); }
+        #endregion
+
         #region TestDataPoints : IEnumerable<DataPoint>
 
         /// <summary>
@@ -52,6 +61,9 @@ namespace Covid19.ViewModels
 
         #region Команды
 
+
+
+
         #region CloseApplicationCommand
         public ICommand CloseApplicationCommand { get; }
 
@@ -62,6 +74,15 @@ namespace Covid19.ViewModels
         private bool CanCloseApplicationCommandExecuted(object p) => true;
         #endregion
 
+        public ICommand ChangeTabIndexCommand { get; set; }
+
+        private bool CanChangeTabIndexCommandExecute(object p) => _SelectedPageIndex >= 0;
+
+        private void OnChangeTabIndexCommandExecuted(object p)
+        {
+            if (!(p is null)) return;
+            SelectedPageIndex += Convert.ToInt32(p);
+        }
         #endregion
 
 
@@ -70,6 +91,7 @@ namespace Covid19.ViewModels
             #region Команды
 
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecuted);
+            ChangeTabIndexCommand = new LambdaCommand(OnChangeTabIndexCommandExecuted, CanChangeTabIndexCommandExecute);
 
             #endregion
 
