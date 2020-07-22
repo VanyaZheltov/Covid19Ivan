@@ -54,37 +54,26 @@
             <StatusBarItem/>
             <ProgressBar Width="120" Height="14" Value="30"/>
         </StatusBar>
+        
+        
+        
+        
         <TabControl SelectedIndex="{Binding SelectedPageIndex}">
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <fa:ImageAwesome Height="13" Margin="0,0,3,0" Icon="Regular_File" Foreground="Blue"/>
-                        <TextBlock Text="Вкладка 1"/>
-                    </StackPanel>
-                </TabItem.Header>
+            <TabItem Header="Студенты">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="63*"/>
-                        <RowDefinition Height="325*"/>
-                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="157*"/>
-                        <ColumnDefinition Width="637*"/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Rectangle Grid.Row="0" Grid.Column="0"
-                     Fill="Blue" Stroke="Red" StrokeThickness="3" 
-                     RadiusX="5" RadiusY="7"/>
-                    <Ellipse Name="MyEllipse" Grid.Column="1" Grid.Row="1" Fill="Blue" Stroke="Red" StrokeThickness="3" Margin="10,0,-10,0">
-                        <Ellipse.InputBindings>
-                            <MouseBinding Command="{Binding CloseApplicationCommand}" MouseAction="LeftDoubleClick"></MouseBinding>
-                        </Ellipse.InputBindings>
-                    </Ellipse>
-                    <GridSplitter Grid.Column="0" Grid.RowSpan="2"
-                              HorizontalAlignment="Right"
-                              Width="4"/>
-
+                    <GroupBox Grid.Column="0" Header="Группы">
+                        <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="Name"/>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Студенты">
+                        <DataGrid>
+                            
+                        </DataGrid>
+                    </GroupBox>
                 </Grid>
-
             </TabItem>
             <TabItem>
                 <TabItem.Header>
@@ -104,6 +93,7 @@
                                     DataFieldY="YValue"/>
                 </oxy:Plot>
             </TabItem>
+
             <TabItem Header="Вкладка 3"></TabItem>
             <TabItem Header="Вкладка 4"></TabItem>
             <TabItem Header="Вкладка 5"></TabItem>

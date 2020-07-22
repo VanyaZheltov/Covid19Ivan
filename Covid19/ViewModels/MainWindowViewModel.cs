@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,16 +8,21 @@ using System.Windows;
 using System.Windows.Input;
 using Covid19.Infrastructure.Commands;
 using Covid19.Models;
+using Covid19.Models.Decanat;
 using Covid19.ViewModels.Base;
 
 namespace Covid19.ViewModels
 {
     class MainWindowViewModel : ViewModel
     {
+        /*                                                                       */
+
+
+        public ObservableCollection<Group> Groups { get; set; }
         #region PageIndex : int - номер вкладки
-/// <summary>
-/// Номер вкладки
-/// </summary>
+        /// <summary>
+        /// Номер вкладки
+        /// </summary>
         private int _SelectedPageIndex;
 
         public int SelectedPageIndex
@@ -62,6 +68,8 @@ namespace Covid19.ViewModels
         }
         #endregion
 
+        /*                                                                       */
+
         #region Команды
 
 
@@ -93,6 +101,7 @@ namespace Covid19.ViewModels
         #endregion
         #endregion
 
+        /*                                                                       */
 
         public MainWindowViewModel()
         {
@@ -113,6 +122,33 @@ namespace Covid19.ViewModels
                 data_points.Add(new DataPoint { XValue = x, YValue = y });
             }
             TestDataPoint = data_points;
+
+
+
+            var student_index = 1;
+
+            var students = Enumerable.Range(1, 10).Select(i => new Student
+            {
+                Name = $"Name {student_index++}",
+                Surname = $"Surname {student_index++}",
+                Patronymic = $"Patronymic {student_index++}",
+                Birthday = DateTime.Now,
+                Rating = 0
+            });
+
+            var groups = Enumerable.Range(1, 20).Select(i => new Group()
+            {
+                Name = $"Группа {i}",
+                Students = new ObservableCollection<Student>(students)
+
+            });
+            Groups = new ObservableCollection<Group>(groups);
+
+
+
+
         }
+        /*                                                                       */
+
     }
 }
