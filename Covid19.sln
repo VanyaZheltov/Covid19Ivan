@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLibFramesork", "TestLib
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8A67A160-DB82-4AB0-8033-5E90E45F3874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Covid19Console", "Covid19Console\Covid19Console.csproj", "{857F9DFF-60E9-49D0-B98E-B1A3759DA597}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Covid19Console", "Covid19Console\Covid19Console.csproj", "{857F9DFF-60E9-49D0-B98E-B1A3759DA597}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWPF", "TestWPF\TestWPF.csproj", "{AACA842E-3566-47A3-81C1-435BB5FE1D6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +31,17 @@ Global
 		{857F9DFF-60E9-49D0-B98E-B1A3759DA597}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{857F9DFF-60E9-49D0-B98E-B1A3759DA597}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{857F9DFF-60E9-49D0-B98E-B1A3759DA597}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AACA842E-3566-47A3-81C1-435BB5FE1D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AACA842E-3566-47A3-81C1-435BB5FE1D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AACA842E-3566-47A3-81C1-435BB5FE1D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AACA842E-3566-47A3-81C1-435BB5FE1D6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{857F9DFF-60E9-49D0-B98E-B1A3759DA597} = {8A67A160-DB82-4AB0-8033-5E90E45F3874}
+		{AACA842E-3566-47A3-81C1-435BB5FE1D6E} = {8A67A160-DB82-4AB0-8033-5E90E45F3874}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4D81BE2-4F7B-4C36-8B01-146312E0855B}

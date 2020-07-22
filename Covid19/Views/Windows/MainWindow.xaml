@@ -40,7 +40,7 @@
                     <fa:ImageAwesome Height="12" Icon="Regular_ArrowAltCircleLeft"/>
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem Command="{Binding ChangeTabIndexCommand}" CommandParameter="+1">
+            <MenuItem Command="{Binding ChangeTabIndexCommand}" CommandParameter="1">
                 <MenuItem.Header>
                     <fa:ImageAwesome Height="12" Icon="Regular_ArrowAltCircleRight"/>
                 </MenuItem.Header>
@@ -85,7 +85,13 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="График">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Height="13" Margin="0,0,3,0" Icon="Solid_ChartArea" Foreground="Blue"/>
+                        <TextBlock Text="График"/>
+                    </StackPanel>
+                </TabItem.Header>
                 <oxy:Plot>
                     <oxy:Plot.Axes>
                         <oxy:LinearAxis Position="Left"></oxy:LinearAxis>
