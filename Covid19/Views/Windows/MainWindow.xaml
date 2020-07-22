@@ -10,6 +10,7 @@
         mc:Ignorable="d"
         
         xmlns:vm ="clr-namespace:Covid19.ViewModels"
+        
         Title="{Binding Title}" Height="573.913" Width="930.435">
     <Window.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="Q" Command="{Binding CloseApplicationCommand}"></KeyBinding>

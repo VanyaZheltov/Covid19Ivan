@@ -76,7 +76,7 @@ namespace Covid19.ViewModels
         }
         private bool CanCloseApplicationCommandExecuted(object p) => true;
         #endregion
-
+        #region ChangeTabIndexCommand
         public ICommand ChangeTabIndexCommand { get; }
         private bool CanChangeTabIndexCommandExecute(object p)
         {
@@ -90,7 +90,7 @@ namespace Covid19.ViewModels
 
             SelectedPageIndex += Convert.ToInt32(p);
         }
-
+        #endregion
         #endregion
 
 
