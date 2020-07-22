@@ -143,8 +143,8 @@ namespace Covid19.ViewModels
 
             var students = Enumerable.Range(1, 10).Select(i => new Student
             {
-                Name = $"Name {student_index++}",
-                Surname = $"Surname {student_index++}",
+                Name = $"Name {student_index}",
+                Surname = $"Surname {student_index}",
                 Patronymic = $"Patronymic {student_index++}",
                 Birthday = DateTime.Now,
                 Rating = 0
