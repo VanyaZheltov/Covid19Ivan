@@ -19,6 +19,19 @@ namespace Covid19.ViewModels
 
 
         public ObservableCollection<Group> Groups { get; set; }
+
+        #region SelectedGroup : Group - выбранная группа
+
+        private Group _SelectedGroup;
+
+        public Group SelectedGroup
+        {
+            get => _SelectedGroup;
+            set => Set(ref _SelectedGroup, value);
+        }
+
+        #endregion
+
         #region PageIndex : int - номер вкладки
         /// <summary>
         /// Номер вкладки
@@ -86,6 +99,7 @@ namespace Covid19.ViewModels
         #endregion
         #region ChangeTabIndexCommand
         public ICommand ChangeTabIndexCommand { get; }
+
         private bool CanChangeTabIndexCommandExecute(object p)
         {
             if ((p != null)) return true;
