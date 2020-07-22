@@ -20,6 +20,20 @@ namespace Covid19.ViewModels
 
         public ObservableCollection<Group> Groups { get; set; }
 
+        public object[] CompositeCollection {     get;    }
+
+        #region SelectedCompositeValue - выбранное композитное значение
+
+        private Group _SelectedCompositeValue;
+
+        public Group SelectedCompositeValue
+        {
+            get => _SelectedCompositeValue;
+            set => Set(ref _SelectedCompositeValue, value);
+        }
+
+        #endregion
+
         #region SelectedGroup : Group - выбранная группа
 
         private Group _SelectedGroup;
@@ -159,8 +173,14 @@ namespace Covid19.ViewModels
             Groups = new ObservableCollection<Group>(groups);
 
 
+            var group = Groups[1];
+            var data_list = new List<object>();
+            data_list.Add("Hello!");
+            data_list.Add(42);
+            data_list.Add(group);
+            data_list.Add(group.Students[0]);
 
-
+            CompositeCollection = data_list.ToArray();
         }
         /*                                                                       */
 

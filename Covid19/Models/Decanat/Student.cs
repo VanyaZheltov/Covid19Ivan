@@ -25,7 +25,7 @@ namespace Covid19.Models.Decanat
     {
         public string Name { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public IList<Student> Students { get; set; }
 
         public string Description { get; set; }
     }
