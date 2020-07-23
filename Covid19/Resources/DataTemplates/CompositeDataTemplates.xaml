@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Covid19.Resources.DataTemplates"
+                    xmlns:decanat="clr-namespace:Covid19.Models.Decanat"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    >
+    <DataTemplate DataType="{x:Type decanat:Group}">
+            <TextBlock Text="{Binding Name}"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type decanat:Student}">
+            <TextBlock Text="{Binding Name, StringFormat=Студент {0}}"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type sys:String}">
+            <TextBlock>
+                                   <Run Foreground="Blue">Строка:</Run> <TextBlock Text="{Binding}"/>
+                                </TextBlock>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type sys:Int32}">
+            <TextBlock>
+                                   <Run Foreground="Red">Число:</Run> <TextBlock Text="{Binding}"/>
+                                </TextBlock>
+        </DataTemplate>
+</ResourceDictionary>

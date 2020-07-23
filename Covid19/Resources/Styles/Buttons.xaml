@@ -15,6 +15,7 @@
         <Setter Property="Margin" Value="3,0"/>
         <Setter Property="Padding" Value="3,5"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        
     </Style>
     <!--===================================================================================-->
     <Style x:Key="DenyBtn" TargetType="Button">

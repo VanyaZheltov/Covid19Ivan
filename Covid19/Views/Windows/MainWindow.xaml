@@ -79,22 +79,11 @@
                             <TextBlock Text="Элементы"/>
                         </GroupBox.Header>
                         <GroupBox.Resources>
-                            <DataTemplate DataType="{x:Type decanat:Group}">
-                                <TextBlock Text="{Binding Name}"/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type decanat:Student}">
-                                <TextBlock Text="{Binding Name, StringFormat=Студент {0}}"/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type sys:String}">
-                                <TextBlock>
-                                   <Run Foreground="Blue">Строка:</Run> <TextBlock Text="{Binding}"/>
-                                </TextBlock>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type sys:Int32}">
-                                <TextBlock>
-                                   <Run Foreground="Red">Число:</Run> <TextBlock Text="{Binding}"/>
-                                </TextBlock>
-                            </DataTemplate>
+                            <ResourceDictionary>
+                                <ResourceDictionary.MergedDictionaries>
+                                    <ResourceDictionary Source="../../Resources/DataTemplates/CompositeDataTemplates.xaml"/>
+                                </ResourceDictionary.MergedDictionaries>
+                            </ResourceDictionary>
                         </GroupBox.Resources>
                         <ListBox ItemsSource="{Binding CompositeCollection}" 
                              SelectedItem="{Binding SelectedCompositeValue}">
@@ -102,22 +91,7 @@
                     </GroupBox>
                     <GroupBox Header="Выбранный элемент" Grid.Column="4">
                         <GroupBox.Resources>
-                            <DataTemplate DataType="{x:Type decanat:Group}">
-                                <TextBlock Text="{Binding Name}"/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type decanat:Student}">
-                                <TextBlock Text="{Binding Name, StringFormat=Студент {0}}"/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type sys:String}">
-                                <TextBlock>
-                                   <Run Foreground="Blue">Строка:</Run> <TextBlock Text="{Binding}"/>
-                                </TextBlock>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type sys:Int32}">
-                                <TextBlock>
-                                   <Run Foreground="Red">Число:</Run> <TextBlock Text="{Binding}"/>
-                                </TextBlock>
-                            </DataTemplate>
+                            
                         </GroupBox.Resources>
                         <ContentControl Content="{Binding SelectedCompositeValue}"/>
                     </GroupBox>
@@ -132,7 +106,18 @@
                     <GroupBox Grid.Column="0" Header="Группы">
                         <DockPanel>
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,3">
-                                <Button Content="Добавить" Style="{StaticResource ApplyBtn}" Command="{Binding CreateNewGroupCommand}"/>
+                                <Button Style="{StaticResource ApplyBtn}" Command="{Binding CreateNewGroupCommand}">
+                                    <Button.Content>
+                                        <StackPanel>
+                                            <TextBlock Text="Добавить"/>
+                                            <fa:ImageAwesome Height="12" Icon="Solid_Check" Margin="0,0,3,0" Foreground="White">
+                                                <fa:ImageAwesome.Effect>
+                                                    <DropShadowEffect ShadowDepth="1"/>
+                                                </fa:ImageAwesome.Effect>
+                                            </fa:ImageAwesome>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
                                 <Button Content="Удалить" Style="{StaticResource DenyBtn}" Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}"/>
                             </UniformGrid>
                             <ListBox ItemsSource="{Binding Groups}"
