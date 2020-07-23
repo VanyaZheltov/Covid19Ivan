@@ -9,7 +9,7 @@
         xmlns:decanat="clr-namespace:Covid19.Models.Decanat"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
-        
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:vm ="clr-namespace:Covid19.ViewModels"
         
         Title="{Binding Title}" Height="573.913" Width="930.435">
@@ -55,10 +55,10 @@
             <StatusBarItem/>
             <ProgressBar Width="120" Height="14" Value="30"/>
         </StatusBar>
-        
-        
-        
-        
+
+
+
+
         <TabControl SelectedIndex="{Binding SelectedPageIndex}">
             <TabItem Header="Разнородные данные" Height="20" VerticalAlignment="Top">
                 <Grid>
@@ -68,23 +68,59 @@
                         </DataTemplate>
                     </Grid.Resources>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="150.5"/>
+                        <ColumnDefinition Width="11.5"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="77"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Header="Элементы">
-
+                    <GroupBox Grid.ColumnSpan="4">
+                        <GroupBox.Header>
+                            <TextBlock Text="Элементы"/>
+                        </GroupBox.Header>
+                        <GroupBox.Resources>
+                            <DataTemplate DataType="{x:Type decanat:Group}">
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type decanat:Student}">
+                                <TextBlock Text="{Binding Name, StringFormat=Студент {0}}"/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type sys:String}">
+                                <TextBlock>
+                                   <Run Foreground="Blue">Строка:</Run> <TextBlock Text="{Binding}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type sys:Int32}">
+                                <TextBlock>
+                                   <Run Foreground="Red">Число:</Run> <TextBlock Text="{Binding}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </GroupBox.Resources>
                         <ListBox ItemsSource="{Binding CompositeCollection}" 
                              SelectedItem="{Binding SelectedCompositeValue}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding}"/>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
                         </ListBox>
-                    </GroupBox>                  
-                        <GroupBox Header="Выбранный элемент" Grid.Column="1">
+                    </GroupBox>
+                    <GroupBox Header="Выбранный элемент" Grid.Column="4">
+                        <GroupBox.Resources>
+                            <DataTemplate DataType="{x:Type decanat:Group}">
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type decanat:Student}">
+                                <TextBlock Text="{Binding Name, StringFormat=Студент {0}}"/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type sys:String}">
+                                <TextBlock>
+                                   <Run Foreground="Blue">Строка:</Run> <TextBlock Text="{Binding}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type sys:Int32}">
+                                <TextBlock>
+                                   <Run Foreground="Red">Число:</Run> <TextBlock Text="{Binding}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </GroupBox.Resources>
                         <ContentControl Content="{Binding SelectedCompositeValue}"/>
-                        </GroupBox>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Студенты">
@@ -94,17 +130,23 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Группы">
-                        <ListBox ItemsSource="{Binding Groups}"
+                        <DockPanel>
+                            <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,3">
+                                <Button Content="Добавить" Style="{StaticResource ApplyBtn}" Command="{Binding CreateNewGroupCommand}"/>
+                                <Button Content="Удалить" Style="{StaticResource DenyBtn}" Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}"/>
+                            </UniformGrid>
+                            <ListBox ItemsSource="{Binding Groups}"
                                  SelectedItem="{Binding SelectedGroup}" SelectedIndex="0">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate DataType="decanat:Group">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Name}"/>
-                                        <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов:{0}]}" Margin="3,0,0,0"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="decanat:Group">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}"/>
+                                            <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов:{0}]}" Margin="3,0,0,0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DockPanel>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="{Binding SelectedGroup.Name,
                         FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}">
