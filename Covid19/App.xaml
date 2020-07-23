@@ -4,27 +4,12 @@
              xmlns:local="clr-namespace:Covid19"
              StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
-        <Style x:Key="ButtonBase" TargetType="Button">
-            <Setter Property="Background" Value="WhiteSmoke"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-
-        <Style TargetType="Button" BasedOn="{StaticResource ButtonBase}"/>
-        <Style TargetType="ToggleButton" BasedOn="{StaticResource ButtonBase}"/>
-        
-        <Style x:Key="ApplyBtn" TargetType="Button">
-            <Setter Property="Background" Value="LightGreen"/>
-            <Setter Property="Margin" Value="3,0"/>
-            <Setter Property="Padding" Value="3,5"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-        
-        <Style x:Key="DenyBtn" TargetType="Button">
-            <Setter Property="Margin" Value="3,0"/>
-            <Setter Property="Padding" Value="3,5"/>
-            <Setter Property="Background" Value="IndianRed"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="Black"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Buttons.xaml">
+                    
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
