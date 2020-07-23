@@ -106,28 +106,59 @@
                     <GroupBox Grid.Column="0" Header="Группы">
                         <DockPanel>
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,3">
-                                <Button Style="{StaticResource ApplyBtn}" Command="{Binding CreateNewGroupCommand}">
+                                <Button Style="{StaticResource ApplyButtonStyle}"  Command="{Binding CreateNewGroupCommand}">
                                     <Button.Content>
                                         <StackPanel>
                                             <TextBlock Text="Добавить"/>
-                                            <fa:ImageAwesome Height="12" Icon="Solid_Check" Margin="0,0,3,0" Foreground="White">
-                                                <fa:ImageAwesome.Effect>
-                                                    <DropShadowEffect ShadowDepth="1"/>
-                                                </fa:ImageAwesome.Effect>
-                                            </fa:ImageAwesome>
                                         </StackPanel>
                                     </Button.Content>
+                                    <Button.RenderTransform>
+                                        <RotateTransform Angle="0" x:Name="ApplyAngleTrans"></RotateTransform>
+                                    </Button.RenderTransform>
+                                    <Button.Triggers>
+                                        <EventTrigger RoutedEvent="Button.Click">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetName="ApplyAngleTrans" Storyboard.TargetProperty="Angle"
+                                                                         From="0" To="-0.5" Duration="0:0:0.25" AutoReverse="True"></DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </Button.Triggers>
                                 </Button>
-                                <Button Content="Удалить" Style="{StaticResource DenyBtn}" Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}"/>
+                                <Button Content="Удалить" Style="{StaticResource DenyButtonStyle}" Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding SelectedGroup}" RenderTransformOrigin="0.5,0.5">
+                                    <Button.RenderTransform>
+                                        <RotateTransform Angle="0" x:Name="DenyAngleTrans"></RotateTransform>
+                                    </Button.RenderTransform>
+                                    <Button.Triggers>
+                                        <EventTrigger RoutedEvent="Button.Click">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetName="DenyAngleTrans" Storyboard.TargetProperty="Angle"
+                                                                         From="0" To="0.5" Duration="0:0:0.25" AutoReverse="True"></DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </Button.Triggers>
+                                </Button>
                             </UniformGrid>
                             <ListBox ItemsSource="{Binding Groups}"
                                  SelectedItem="{Binding SelectedGroup}" SelectedIndex="0">
                                 <ListBox.ItemTemplate>
-                                    <DataTemplate DataType="decanat:Group">
+                                    <DataTemplate DataType="decanat:Group" >
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Name}"/>
-                                            <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов:{0}]}" Margin="3,0,0,0"/>
+                                            <TextBlock Text="{Binding Name}" x:Name="StudentsName"/>
+                                            <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов:{0}]}" Margin="3,0,0,0" x:Name="StudentsCount"/>
                                         </StackPanel>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Students.Count}" Value="0">
+                                                <Setter Property="Foreground" TargetName="StudentsName" Value="Red" />
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
