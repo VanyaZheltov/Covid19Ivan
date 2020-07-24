@@ -65,11 +65,15 @@
                     <GroupBox Grid.Column="0" Header="Группы">
                         <DockPanel>
                             <DockPanel.Resources>
-                                <CollectionViewSource x:Key="GroupsCollection" Source="{Binding Groups}"/>
+                                <CollectionViewSource
+                                    x:Name="GroupsCollection"
+                                    x:Key="GroupsCollection" 
+                                    Source="{Binding Groups}"
+                                    Filter="GroupsCollection_OnFilter"/>
                             </DockPanel.Resources>
                             <DockPanel DockPanel.Dock="Top" Margin="0,3">
                                 <fa:ImageAwesome Icon="Solid_Search" Height="13" Margin="3,0"/>
-                                <TextBox/>
+                                <TextBox Name="GroupNameFilterText" TextChanged="GroupNameFilterTextChanged"/>
                                 
                             </DockPanel>
                             <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="0,3">
@@ -114,7 +118,14 @@
                                 </Button>
                             </UniformGrid>
                             <ListBox ItemsSource="{Binding Source={StaticResource GroupsCollection}}"
-                                 SelectedItem="{Binding SelectedGroup}" SelectedIndex="0">
+                                 SelectedItem="{Binding SelectedGroup}" SelectedIndex="0" VirtualizingPanel.IsContainerVirtualizable="True"
+                                     VirtualizingPanel.IsVirtualizing="True"
+                                     VirtualizingPanel.VirtualizationMode="Recycling">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="decanat:Group" >
                                         <StackPanel Orientation="Horizontal">
