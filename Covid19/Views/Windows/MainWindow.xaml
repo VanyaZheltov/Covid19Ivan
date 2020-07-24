@@ -169,10 +169,10 @@
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}" AutoGenerateColumns="False" CanUserAddRows="False" VerticalGridLinesBrush="DarkGray"
                                   GridLinesVisibility="Vertical" AlternatingRowBackground="LightGray">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="Auto" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Рейтинг" Binding="{Binding Rating}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="Auto" IsReadOnly="False"/>
+                                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" IsReadOnly="False"/>
+                                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" IsReadOnly="False"/>
+                                <DataGridTextColumn Header="Рейтинг" Binding="{Binding Rating}" IsReadOnly="False"/>
                                 <!--<DataGridTextColumn Header="Дата рождения" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>-->
                                 <DataGridTemplateColumn Header="Дата рождения">
                                     <!--<DataGridTemplateColumn.CellTemplate>

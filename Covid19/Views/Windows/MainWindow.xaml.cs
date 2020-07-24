@@ -19,9 +19,6 @@ namespace Covid19.Views.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        public MainWindow() => InitializeComponent();      
     }
 }
