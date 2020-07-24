@@ -60,43 +60,7 @@
 
 
         <TabControl SelectedIndex="{Binding SelectedPageIndex}">
-            <TabItem Header="Разнородные данные" Height="20" VerticalAlignment="Top">
-                <Grid>
-                    <Grid.Resources>
-                        <DataTemplate DataType="{x:Type decanat:Group}">
-                            <TextBlock Text="{Binding Name}"/>
-                        </DataTemplate>
-                    </Grid.Resources>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150.5"/>
-                        <ColumnDefinition Width="11.5"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="77"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <GroupBox Grid.ColumnSpan="4">
-                        <GroupBox.Header>
-                            <TextBlock Text="Элементы"/>
-                        </GroupBox.Header>
-                        <GroupBox.Resources>
-                            <ResourceDictionary>
-                                <ResourceDictionary.MergedDictionaries>
-                                    <ResourceDictionary Source="../../Resources/DataTemplates/CompositeDataTemplates.xaml"/>
-                                </ResourceDictionary.MergedDictionaries>
-                            </ResourceDictionary>
-                        </GroupBox.Resources>
-                        <ListBox ItemsSource="{Binding CompositeCollection}" 
-                             SelectedItem="{Binding SelectedCompositeValue}">
-                        </ListBox>
-                    </GroupBox>
-                    <GroupBox Header="Выбранный элемент" Grid.Column="4">
-                        <GroupBox.Resources>
-                            
-                        </GroupBox.Resources>
-                        <ContentControl Content="{Binding SelectedCompositeValue}"/>
-                    </GroupBox>
-                </Grid>
-            </TabItem>
+            
             <TabItem Header="Студенты">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -217,10 +181,6 @@
                                     DataFieldY="YValue"/>
                 </oxy:Plot>
             </TabItem>
-
-            <TabItem Header="Вкладка 3"></TabItem>
-            <TabItem Header="Вкладка 4"></TabItem>
-            <TabItem Header="Вкладка 5"></TabItem>
         </TabControl>
     </DockPanel>
 </Window>
