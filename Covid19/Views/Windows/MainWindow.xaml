@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cmd="clr-namespace:Covid19.Infrastructure.Commands"
-        xmlns:local="clr-namespace:Covid19.Views.Windows"
+        xmlns:l="clr-namespace:Covid19.Views.Windows"
+        xmlns:local="clr-namespace:Covid19"
         xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:decanat="clr-namespace:Covid19.Models.Decanat"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
@@ -56,6 +57,35 @@
             <ProgressBar Width="120" Height="14" Value="30"/>
         </StatusBar>
         <TabControl SelectedIndex="{Binding SelectedPageIndex}">
+            <TabItem Header="Виртуализация" Visibility="Collapsed">
+                <Grid>
+                    <TextBlock Text="{Binding Source={x:Static local:App.IsDesignMode}}"></TextBlock>
+                <ListBox ItemsSource="{Binding TestStudents}" HorizontalAlignment="Left" Width="200" Margin="30" VirtualizingPanel.IsVirtualizing="True" 
+                         VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.IsContainerVirtualizable="True">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="decanat:Student">
+                                <Border BorderBrush="Blue" BorderThickness="1" CornerRadius="3" Padding="3">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Surname}" ToolTip="{Binding Name}"></TextBlock>
+                                        <TextBlock Text="{Binding Name}" ToolTip="{Binding Name}"></TextBlock>
+                                        <TextBlock Text="{Binding Patronymic,TargetNullValue=--}" ToolTip="{Binding Name}"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                </Grid>
+            </TabItem>
             <TabItem Header="Студенты">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -149,7 +179,7 @@
                                 <fa:ImageAwesome Icon="Solid_Search" Height="13" Margin="3,0"/>
                                 <TextBox/>
                             </DockPanel>
-                            <DataGrid ItemsSource="{Binding SelectedGroup.Students}" AutoGenerateColumns="False" CanUserAddRows="False" VerticalGridLinesBrush="DarkGray"
+                            <DataGrid EnableColumnVirtualization="True" EnableRowVirtualization="True" ItemsSource="{Binding SelectedGroup.Students}" AutoGenerateColumns="False" CanUserAddRows="False" VerticalGridLinesBrush="DarkGray"
                                   GridLinesVisibility="Vertical" AlternatingRowBackground="LightGray">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="Auto" IsReadOnly="False"/>
