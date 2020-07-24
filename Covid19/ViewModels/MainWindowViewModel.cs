@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using Covid19.Infrastructure.Commands;
 using Covid19.Models;
@@ -41,16 +43,72 @@ namespace Covid19.ViewModels
         public Group SelectedGroup
         {
             get => _SelectedGroup;
-            set => Set(ref _SelectedGroup, value);
+            set
+            {
+                if (!Set(ref _SelectedGroup, value)) return;
+                _SelectedGroupStudents.Source = value?.Students;
+                OnPropertyChanged(nameof(SelectedGroupStudents));
+                    
+            }
         }
 
         #endregion
+
+        #region StudentFilterTest : String
+
+        private string _StudentFilterText;
+
+        public string StudentFilterText
+        {
+            get => _StudentFilterText;
+            set
+            {
+                if (!Set(ref _StudentFilterText, value)) return;
+                _SelectedGroupStudents.View.Refresh();
+            }
+        }
+        #endregion
+
+        #region SelectedGroupStudents
+        private readonly CollectionViewSource _SelectedGroupStudents = new CollectionViewSource();
+
+        private void OnStudentFiltred(object sender, FilterEventArgs e)
+        {
+
+            if (!(e.Item is Student student))
+            {
+                e.Accepted = false;
+                return;
+            }
+
+            var filter_text = _StudentFilterText;
+            if (string.IsNullOrEmpty(filter_text))
+                return;
+
+
+            if (student.Name is null || student.Surname is null || student.Patronymic is null)
+            {
+                e.Accepted = false;
+                return;
+            }
+
+            if (student.Name.Contains(filter_text)) return;
+            if (student.Surname.Contains(filter_text)) return;
+            if (student.Patronymic.Contains(filter_text)) return;
+
+            e.Accepted = false;
+
+        }
+
+        public ICollectionView SelectedGroupStudents => _SelectedGroupStudents?.View;
+        #endregion
+
 
         #region PageIndex : int - номер вкладки
         /// <summary>
         /// Номер вкладки
         /// </summary>
-        private int _SelectedPageIndex;
+        private int _SelectedPageIndex = 1;
 
         public int SelectedPageIndex
         {
@@ -94,6 +152,10 @@ namespace Covid19.ViewModels
           set => Set(ref _Status, value);
         }
         #endregion
+
+
+
+
 
         public IEnumerable<Student> TestStudents => Enumerable.Range(1, App.IsDesignMode ? 10 : 100000).Select(i => new Student
         {
@@ -226,7 +288,12 @@ namespace Covid19.ViewModels
             data_list.Add(group.Students[0]);
 
             CompositeCollection = data_list.ToArray();
+
+            _SelectedGroupStudents.Filter += OnStudentFiltred;
+
         }
+
+        
         /*----------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     }

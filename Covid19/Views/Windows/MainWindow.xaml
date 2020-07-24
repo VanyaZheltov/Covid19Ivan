@@ -10,6 +10,7 @@
         xmlns:decanat="clr-namespace:Covid19.Models.Decanat"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
+        xmlns:cm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:vm ="clr-namespace:Covid19.ViewModels"
         
@@ -99,7 +100,12 @@
                                     x:Name="GroupsCollection"
                                     x:Key="GroupsCollection" 
                                     Source="{Binding Groups}"
-                                    Filter="GroupsCollection_OnFilter"/>
+                                    Filter="GroupsCollection_OnFilter">
+                                    <CollectionViewSource.SortDescriptions>
+                                        <cm:SortDescription  PropertyName="Name" Direction="Descending"/>
+                                    </CollectionViewSource.SortDescriptions>
+                                </CollectionViewSource>
+                                
                             </DockPanel.Resources>
                             <DockPanel DockPanel.Dock="Top" Margin="0,3">
                                 <fa:ImageAwesome Icon="Solid_Search" Height="13" Margin="3,0"/>
@@ -177,9 +183,9 @@
                         <DockPanel>
                             <DockPanel DockPanel.Dock="Top">
                                 <fa:ImageAwesome Icon="Solid_Search" Height="13" Margin="3,0"/>
-                                <TextBox/>
+                                <TextBox Text="{Binding StudentFilterText, UpdateSourceTrigger=PropertyChanged}"/>
                             </DockPanel>
-                            <DataGrid EnableColumnVirtualization="True" EnableRowVirtualization="True" ItemsSource="{Binding SelectedGroup.Students}" AutoGenerateColumns="False" CanUserAddRows="False" VerticalGridLinesBrush="DarkGray"
+                            <DataGrid EnableColumnVirtualization="True" EnableRowVirtualization="True" ItemsSource="{Binding SelectedGroupStudents}" AutoGenerateColumns="False" CanUserAddRows="False" VerticalGridLinesBrush="DarkGray"
                                   GridLinesVisibility="Vertical" AlternatingRowBackground="LightGray">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="Auto" IsReadOnly="False"/>
