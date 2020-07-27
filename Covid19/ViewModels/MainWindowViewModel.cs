@@ -163,7 +163,17 @@ namespace Covid19.ViewModels
             Surname = $"Фамилия {i}"
         });
 
+        public DirectoryViewModel DiskRootDir { get; } = new DirectoryViewModel("C:\\");
 
+        #region Выбранная директория
+        public DirectoryViewModel _SelectedDirectory;
+
+        public DirectoryViewModel SelectedDirectory
+        {
+            get => _SelectedDirectory;
+            set => Set(ref _SelectedDirectory, value);
+        }
+        #endregion
         /*----------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         #region Команды

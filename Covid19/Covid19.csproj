@@ -106,6 +106,7 @@
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Decanat\Student.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
+    <Compile Include="ViewModels\DirectoryViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="Resources\DataTemplates\CompositeDataTemplates.xaml">
       <SubType>Designer</SubType>
