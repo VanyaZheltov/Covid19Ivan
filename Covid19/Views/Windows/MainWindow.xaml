@@ -264,8 +264,7 @@
                                  DisplayMemberPath="Name"
                                  SelectedItem="{Binding SelectedDirectory}"
                                  SelectedIndex="0"/>-->
-                        <TreeView ItemsSource="{Binding DiskRootDir.DirectoryItems}">
-                        </TreeView>
+                        <TreeView ItemsSource="{Binding DiskRootDir.DirectoryItems}"/>
                     </GroupBox>
                     <!--<GroupBox Grid.Column="1" Header="Файлы">
                         <ListBox SelectedItem="{Binding SelectedDirectory.Files, Mode=OneWay}">
